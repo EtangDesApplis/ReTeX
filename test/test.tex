@@ -1,0 +1,55 @@
+\documentclass[11pt,A4]{article}
+%
+%for images
+\usepackage{graphicx}
+\graphicspath{ {./} }
+%
+%symbols
+\usepackage{marvosym}
+\usepackage{fontawesome}
+%set margin
+\usepackage[a4paper]{geometry}		
+\geometry{top=1cm, bottom=1cm, left=2cm, right=2cm} 
+%
+%color
+\usepackage{xcolor,colortbl}
+%
+\usepackage{lipsum}
+%
+%----------------------------
+%            MAIN
+%----------------------------
+\begin{document}
+
+\noindent\textcolor{black}{\large \bf Homer SIMPSON}\\
+\textcolor{blue}{\large \bf \LaTeX \hspace{2mm}user }\vspace{5pt}\\
+\noindent\textcolor{black}{\rule{\textwidth}{.8mm}}\\
+
+\begin{minipage}[c]{0.3\textwidth}
+\includegraphics[width=30mm]{photo}
+\end{minipage}
+\begin{minipage}[c]{0.35\textwidth}
+\MineSign \hfill 100+ yrs of exp\\
+\faPhone \hfill +33 6 12 34 56 78\\
+\Letter \hfill \textcolor{blue}{\bf homer.simpson@gmail.com}\\
+\faHome \hfill USA\\
+\faFlag \hfill American\\
+\faCar \hfill n/a\\
+\end{minipage}
+
+\section*{\hspace{0.5cm}About me}
+\noindent\textcolor{black}{\rule{\textwidth}{.8mm}}
+\lipsum[1]
+
+\section*{\hspace{0.5cm}Experience}
+\noindent\textcolor{black}{\rule{\textwidth}{.8mm}}
+\lipsum[2]
+
+\section*{\hspace{0.5cm}Education}
+\noindent\textcolor{black}{\rule{\textwidth}{.8mm}}
+\lipsum[3]
+
+\section*{\hspace{0.5cm}Competences}
+\noindent\textcolor{black}{\rule{\textwidth}{.8mm}}
+\lipsum[4]
+\end{document}

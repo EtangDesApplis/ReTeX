@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Wait from './Wait';
+import conf from './conf.json';
+import kofi from './ko-fi.png';
 const OutputZone = props => {
   if (props.result ===1){
     //fresh session
@@ -18,9 +20,13 @@ const OutputZone = props => {
       return (
         <div>
             <label> Log:
-            <object style={{ width: '100%' }} type="text/plain" data={props.result.LogFile} ></object>
+            <object style={{ width: '100%' }} type="text/plain" alt="Job failed" data={props.result.LogFile} ></object>
             </label>
             <a href={props.result.OutputFile} download="output.pdf"> Download Here </a>
+            <br/>
+            <p>If you appreciate this App, you could buy me a coffee here : 
+              <a href="https://ko-fi.com/nguyen31"><img src={kofi} alt="Ko-fi link" height="40"/></a>
+            </p>
         </div>
       );
     }else{
@@ -33,7 +39,7 @@ class MyForm extends Component {
     constructor(props) {
         super(props);
         this.state = {giturl: 'https://github.com/EtangDesApplis/ReTeX.git',
-                      texfile: 'test.tex',
+                      texfile: 'test/cv_homer.tex',
                       response: 1};
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
@@ -56,7 +62,7 @@ class MyForm extends Component {
           //body: JSON.stringify({ title: 'React POST Request Example' })
           body: JSON.stringify({ url: this.state.giturl, main: this.state.texfile })
         };
-        fetch('http://localhost:5000',requestOptions)
+        fetch(conf.backend,requestOptions)
           .then(response => response.json())
           //wait til the reponse from back end
           .then(data => this.setState({ response: data }));

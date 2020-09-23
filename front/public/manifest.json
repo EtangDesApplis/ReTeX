@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ReTeX",
+  "name": "React Web App to build Latex project",
   "icons": [
     {
       "src": "favicon.ico",
