@@ -1,6 +1,8 @@
 # ReTeX
 Latex is great but not always [easy to install]
+
 Install Latex fancy packages, e.g. fontawsome, on an architecture like Mac OS is somtimes a challenge [at least for a friend of mine]
+
 More over, a full Latex installation costs arround 6GB of disk.
 
 ReTex is an easy way to work with Latex whenever and wherever you need !
