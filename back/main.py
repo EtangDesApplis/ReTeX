@@ -42,11 +42,17 @@ def post_route():
 
       #compile pdflatex
       texfile=os.path.join(workdir,data["main"]) #<------------------
-      executeShell(["pdflatex","-interaction=batchmode", "-output-directory", workdir, texfile])
+      #executeShell(["pdflatex","-interaction=batchmode", "-output-directory", workdir, texfile])
+      homedir=os.getcwd()
+      os.chdir(os.path.dirname(os.path.abspath(texfile)))
+      executeShell(["pdflatex","-interaction=batchmode", os.path.basename(texfile)])
+      os.chdir(homedir)
 
       #copy output to public folder
-      outputfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".pdf")))
-      logfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".log")))
+      #outputfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".pdf")))
+      #logfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".log")))
+      outputfile=texfile.replace(".tex",".pdf")
+      logfile=texfile.replace(".tex",".log")
       destoutputfile=os.path.join(destdir,os.path.basename(outputfile))
       destlogfile=os.path.join(destdir,os.path.basename(logfile))
       print(outputfile+" -> "+destoutputfile)
