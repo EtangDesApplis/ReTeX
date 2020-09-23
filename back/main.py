@@ -7,8 +7,10 @@ from subprocess import Popen, PIPE
 
 app = Flask(__name__)
 CORS(app)
-
-PUBLIC_FOLDER="../front/public"
+PUBLIC_FOLDER=os.getenv('PUBLIC_FOLDER')
+if PUBLIC_FOLDER==None:
+  PUBLIC_FOLDER="../front/public"
+print(PUBLIC_FOLDER)
 PRIVATE_FOLDER="/tmp"
 #PUBLIC_FOLDER="/tmp"
 
