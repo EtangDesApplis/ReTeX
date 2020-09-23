@@ -3,34 +3,59 @@ from flask_cors import CORS
 import time
 import os
 import shutil
+from subprocess import Popen, PIPE
+
 app = Flask(__name__)
 CORS(app)
 
 PUBLIC_FOLDER="../front/public"
+PRIVATE_FOLDER="/tmp"
+#PUBLIC_FOLDER="/tmp"
+
+def executeShell(cmd):
+  #cmd is a list, e.g. ["ls","-lrt"]
+  output = Popen(cmd,stdout=PIPE)
+  response = output.communicate()
+  print(response[0].decode('utf-8'))
 
 @app.route('/', methods=['POST'])
 def post_route():
-    print(request.method)
+    #print(request.method)
     try:
       data = request.get_json()
       print(data)
       # processing
-      #time.sleep(5)
+      
       #create epoch folder
-      workdir=os.path.join(PUBLIC_FOLDER,str(int(time.time())))
+      epoch=str(int(time.time()))
+      workdir=os.path.join(PRIVATE_FOLDER,"tmp-"+epoch)
+      destdir=os.path.join(PUBLIC_FOLDER,"tmp-"+epoch)
       print(workdir)
+      print(destdir)
       os.makedirs(workdir)
+      os.makedirs(destdir)
 
       #clone git repo
+      executeShell(["git","clone",data["url"],workdir])
 
       #compile pdflatex
-      outputfile=os.path.join(workdir,data["main"].replace(".tex",".pdf"))
-      shutil.copy(os.path.join(PUBLIC_FOLDER,"cv.pdf"), outputfile) 
+      texfile=os.path.join(workdir,data["main"]) #<------------------
+      executeShell(["pdflatex","-interaction=batchmode", "-output-directory", workdir, texfile])
 
-      #read log to base64 (avoid string issue)
+      #copy output to public folder
+      outputfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".pdf")))
+      logfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".log")))
+      destoutputfile=os.path.join(destdir,os.path.basename(outputfile))
+      destlogfile=os.path.join(destdir,os.path.basename(logfile))
+      print(outputfile+" -> "+destoutputfile)
+      print(logfile+" -> "+destlogfile)
+      shutil.copy(outputfile, destoutputfile)
+      shutil.copy(logfile, destlogfile)
 
-      #return
-      return {"Status":"OK","Output":outputfile.replace(PUBLIC_FOLDER,""),"Log":"Sucessful"}
+      #clean up git clone folder
+      shutil.rmtree(workdir)
+
+      return {"Status":"OK","OutputFile":destoutputfile.replace(PUBLIC_FOLDER,""),"LogFile":destlogfile.replace(PUBLIC_FOLDER,"")}
     except:
       return {"Status":"KO"}
 

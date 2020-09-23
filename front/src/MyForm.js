@@ -1,9 +1,40 @@
 import React, {Component} from 'react';
+import Wait from './Wait';
+const OutputZone = props => {
+  if (props.result ===1){
+    //fresh session
+    return <br />
+  }else if (props.result ===2){
+    //awaiting response from back-end since POST request
+    return <Wait />
+  }else{
+    //receive response from back-end
+    if (props.result.Status==="OK"){
+      fetch(props.result.LogFile)
+        .then(response => response.text())
+        .then(text => {
+          console.log(text);
+        })
+      return (
+        <div>
+            <label> Log:
+            <object style={{ width: '100%' }} type="text/plain" data={props.result.LogFile} ></object>
+            </label>
+            <a href={props.result.OutputFile} download="output.pdf"> Download Here </a>
+        </div>
+      );
+    }else{
+      return <p> {props.result.Status} </p>;
+    }
+  }
+}
 
 class MyForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {giturl: 'https://github.com/EtangDesApplis/ReTeX.git',texfile: 'test.tex',log: ''};
+        this.state = {giturl: 'https://github.com/EtangDesApplis/ReTeX.git',
+                      texfile: 'test.tex',
+                      response: 1};
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -12,11 +43,13 @@ class MyForm extends Component {
     handleChange1(event) {    this.setState({giturl: event.target.value});  }
     handleChange2(event) {    this.setState({texfile: event.target.value});  }
     handleSubmit(event) {
-        //alert('A name was submitted: ' + this.state.texfile);
-        //processing code is here
+
+        //set to awating status
+        this.setState({ response: 2 })
 
         //POST RESTFUL TO BACK END {repo: url, main: main.tex}
         //https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples
+        //for timeout https://www.npmjs.com/package/fetch-timeout
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -25,22 +58,15 @@ class MyForm extends Component {
         };
         fetch('http://localhost:5000',requestOptions)
           .then(response => response.json())
-          .then(data => this.setState({ log: JSON.stringify(data) }));
-
-        //{pdf:base64,log:base64}
-        //https://stackoverflow.com/questions/38070373/how-to-send-and-receive-http-post-requests-in-python
-        //wait til semaphore is delete
-
-        //create semaphore file epoch.job in /tmp
-        //return an URL to download & log of build
-        //set log of build
-        //this.setState({log: "Built "+this.state.giturl});
+          //wait til the reponse from back end
+          .then(data => this.setState({ response: data }));
 
         event.preventDefault();
     }
     
     render() {
         return (
+          <div>
           <form onSubmit={this.handleSubmit}>
             <label>
               Git repo URL:
@@ -49,13 +75,9 @@ class MyForm extends Component {
               Main .tex file:
               <input type="text" value={this.state.texfile} onChange={this.handleChange2} />        </label>
             <input type="submit" value="Build project" />
-            <br />
-            <a href="/cv.pdf" download="My_File.pdf"> Download Here </a>
-            <label>
-              Log:
-              <textarea value={this.state.log} />        </label>
           </form>
-          
+          <OutputZone result={this.state.response} />
+          </div>
         );
     }
 }
