@@ -15,6 +15,7 @@ WORKDIR /front
 COPY front /front
 COPY back /back
 EXPOSE 3000
+EXPOSE 5000
 RUN npm install create-react-app -y
 #RUN npm run build
 #CMD HOST=0.0.0.0 npm run start
@@ -22,7 +23,11 @@ RUN npm install create-react-app -y
 RUN npm install -g -y serve
 RUN npm run build
 #RUN serve -s build -l 3000
-CMD serve -s build -l tcp://0.0.0.0:3000
+RUN echo "python3 /back/main.py &" > start.sh && \
+    echo "serve -s build -l tcp://0.0.0.0:3000" >> start.sh
+CMD ["sh", "start.sh"]
+#CMD serve -s build -l tcp://0.0.0.0:3000
+#CMD python3 /back/main.py
 #CMD ["npm", "start"]
 #CMD npm start
 #RUN make /app

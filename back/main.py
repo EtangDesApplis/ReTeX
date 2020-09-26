@@ -69,5 +69,5 @@ def post_route():
 
 if __name__=="__main__":
   #to test with curl: curl localhost:5000 -d "{\"foo\": \"ok\"}" -H 'Content-Type: application/json'
-  app.run()
+  app.run(host='0.0.0.0')
 
