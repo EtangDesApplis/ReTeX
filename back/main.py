@@ -46,6 +46,8 @@ def post_route():
       homedir=os.getcwd()
       os.chdir(os.path.dirname(os.path.abspath(texfile)))
       executeShell(["pdflatex","-interaction=batchmode", os.path.basename(texfile)])
+      #double compilation is required for some latex feature
+      executeShell(["pdflatex","-interaction=batchmode", os.path.basename(texfile)])
       os.chdir(homedir)
 
       #copy output to public folder

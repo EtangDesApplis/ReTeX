@@ -4,6 +4,7 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install texlive-latex-base texlive-latex-extra texlive-fonts-recommended xzdec -y \
+    && apt-get install texlive-fonts-extra -y \
     && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install git -y
 RUN apt install python3 -y
