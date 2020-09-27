@@ -57,7 +57,12 @@ def post_route():
       destlogfile=os.path.join(destdir,os.path.basename(logfile))
       print(outputfile+" -> "+destoutputfile)
       print(logfile+" -> "+destlogfile)
-      shutil.copy(outputfile, destoutputfile)
+      try:
+        shutil.copy(outputfile, destoutputfile)
+      except:
+        #build might have been failed, but log is still available
+        pass
+      #we do not protect this log file to make sure compilation is ok
       shutil.copy(logfile, destlogfile)
 
       #clean up git clone folder

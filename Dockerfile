@@ -11,23 +11,16 @@ RUN apt install python3-pip -y
 RUN pip3 install flask flask_cors
 RUN apt install nodejs -y
 RUN apt install npm -y
+#front
 WORKDIR /front
 COPY front /front
-COPY back /back
-EXPOSE 3000
-EXPOSE 5000
 RUN npm install create-react-app -y
-#RUN npm run build
-#CMD HOST=0.0.0.0 npm run start
-#CMD ["npm", "start"]
 RUN npm install -g -y serve
 RUN npm run build
-#RUN serve -s build -l 3000
-RUN echo "python3 /back/main.py &" > start.sh && \
+#back
+COPY back /back
+EXPOSE 3000 5000
+ENV PUBLIC_FOLDER="/front/build"
+RUN echo "python3 -u /back/main.py &" > start.sh && \
     echo "serve -s build -l tcp://0.0.0.0:3000" >> start.sh
 CMD ["sh", "start.sh"]
-#CMD serve -s build -l tcp://0.0.0.0:3000
-#CMD python3 /back/main.py
-#CMD ["npm", "start"]
-#CMD npm start
-#RUN make /app
