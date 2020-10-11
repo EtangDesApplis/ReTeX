@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && echo "Etc/UTC" > /etc/timezone \
@@ -13,7 +13,7 @@ RUN pip3 install flask flask_cors
 RUN rm -rf /var/lib/apt/lists/*
 
 #back
-COPY main.py /back
+COPY main.py /back/main.py
 EXPOSE 5000
 #ENV PUBLIC_FOLDER="/front/build"
 RUN echo "python3 -u /back/main.py" > start.sh
