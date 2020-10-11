@@ -1,1 +1,5 @@
-{ "backend": "http://0.0.0.0:5000" }
+{ "backend": "http://0.0.0.0:5000",
+  "info": "https://raw.githubusercontent.com/EtangDesApplis/network-info/master/fake.json",
+  "target": "intIP",
+  "port": "5000"
+}

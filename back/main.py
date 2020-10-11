@@ -4,6 +4,7 @@ import time
 import os
 import shutil
 from subprocess import Popen, PIPE
+from flask import send_from_directory
 
 app = Flask(__name__)
 CORS(app)
@@ -20,8 +21,25 @@ def executeShell(cmd):
   response = output.communicate()
   print(response[0].decode('utf-8'))
 
+@app.route('/<path:filePath>')
+def get_file(filePath):
+  #serve file from path
+  tmp=os.path.join(PRIVATE_FOLDER,filePath)
+  try:
+    #text file will be return as html format
+    f=open(tmp,'r')
+    content=""
+    for line in f.readlines():
+      content=content+line.replace('\n',"<br/>")
+    f.close()
+    return content
+  except:
+    #binary file will be send as attachement
+    return send_from_directory(os.path.dirname(tmp), os.path.basename(tmp), as_attachment=True)
+
 @app.route('/', methods=['POST'])
 def post_route():
+
     #print(request.method)
     try:
       data = request.get_json()
@@ -30,12 +48,12 @@ def post_route():
       
       #create epoch folder
       epoch=str(int(time.time()))
-      workdir=os.path.join(PRIVATE_FOLDER,"tmp-"+epoch)
-      destdir=os.path.join(PUBLIC_FOLDER,"tmp-"+epoch)
+      workdir=os.path.join(PRIVATE_FOLDER,"case-"+epoch)
+      #destdir=os.path.join(PUBLIC_FOLDER,"tmp-"+epoch)
       print(workdir)
-      print(destdir)
+      #print(destdir)
       os.makedirs(workdir)
-      os.makedirs(destdir)
+      #os.makedirs(destdir)
 
       #clone git repo
       executeShell(["git","clone",data["url"],workdir])
@@ -55,26 +73,28 @@ def post_route():
       #logfile=os.path.join(workdir,os.path.basename(texfile.replace(".tex",".log")))
       outputfile=texfile.replace(".tex",".pdf")
       logfile=texfile.replace(".tex",".log")
-      destoutputfile=os.path.join(destdir,os.path.basename(outputfile))
-      destlogfile=os.path.join(destdir,os.path.basename(logfile))
-      print(outputfile+" -> "+destoutputfile)
-      print(logfile+" -> "+destlogfile)
-      try:
-        shutil.copy(outputfile, destoutputfile)
-      except:
+      #destoutputfile=os.path.join(destdir,os.path.basename(outputfile))
+      #destlogfile=os.path.join(destdir,os.path.basename(logfile))
+      #print(outputfile+" -> "+destoutputfile)
+      #print(logfile+" -> "+destlogfile)
+      #try:
+      #  shutil.copy(outputfile, destoutputfile)
+      #except:
         #build might have been failed, but log is still available
-        pass
+      #  pass
       #we do not protect this log file to make sure compilation is ok
-      shutil.copy(logfile, destlogfile)
+      #shutil.copy(logfile, destlogfile)
 
       #clean up git clone folder
-      shutil.rmtree(workdir)
+      #shutil.rmtree(workdir)
 
-      return {"Status":"OK","OutputFile":destoutputfile.replace(PUBLIC_FOLDER,""),"LogFile":destlogfile.replace(PUBLIC_FOLDER,"")}
+      return {"Status":"OK","OutputFile":outputfile.replace(PRIVATE_FOLDER,""),"LogFile":logfile.replace(PRIVATE_FOLDER,"")}
     except:
       return {"Status":"KO"}
 
 if __name__=="__main__":
   #to test with curl: curl localhost:5000 -d "{\"foo\": \"ok\"}" -H 'Content-Type: application/json'
+  #curl localhost:5000/Mandat.pdf
+
   app.run(host='0.0.0.0')
 
