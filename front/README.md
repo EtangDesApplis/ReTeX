@@ -66,6 +66,27 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### Deployment directly to Github Pages
 deploy react on gh: https://medium.com/better-programming/how-to-host-your-react-app-on-github-pages-for-free-919ad201a4cb
 
+Install dep
+```
+npm install gh-pages --save-dev
+```
+Modify package.json
+```
+"homepage": "https://etangdesapplis.github.io/ReTeX",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+```  
+deploy to github
+``` 
+npm run deploy
+```
+Then go to github settings of repo, and select gh-pages branch in deployment section
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
