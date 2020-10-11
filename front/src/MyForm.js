@@ -98,8 +98,7 @@ class MyForm extends Component {
             .then(reponse => reponse.json())
             .then(data => {
               if (conf.target==="intIP"){
-                //this.setState({backend: "http://"+data.intIP+":"+conf.port});
-                this.setState({backend: "http://"+"192.168.1.83"+":"+conf.port});
+                this.setState({backend: "http://"+data.intIP+":"+conf.port});
               }else{
                 this.setState({backend: "http://"+data.extIP+":"+conf.port});
               }
