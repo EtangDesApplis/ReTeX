@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ReTeX/static/css/main.47e10bcd.chunk.css",
-    "main.js": "/ReTeX/static/js/main.96d5176b.chunk.js",
-    "main.js.map": "/ReTeX/static/js/main.96d5176b.chunk.js.map",
+    "main.js": "/ReTeX/static/js/main.b8b0f58a.chunk.js",
+    "main.js.map": "/ReTeX/static/js/main.b8b0f58a.chunk.js.map",
     "runtime-main.js": "/ReTeX/static/js/runtime-main.208c5269.js",
     "runtime-main.js.map": "/ReTeX/static/js/runtime-main.208c5269.js.map",
     "static/js/2.e6824236.chunk.js": "/ReTeX/static/js/2.e6824236.chunk.js",
     "static/js/2.e6824236.chunk.js.map": "/ReTeX/static/js/2.e6824236.chunk.js.map",
     "index.html": "/ReTeX/index.html",
-    "precache-manifest.c312353a6b0686b61131ca7f633cec53.js": "/ReTeX/precache-manifest.c312353a6b0686b61131ca7f633cec53.js",
+    "precache-manifest.b6d759694cd76b1bd1c3a86df091eec1.js": "/ReTeX/precache-manifest.b6d759694cd76b1bd1c3a86df091eec1.js",
     "service-worker.js": "/ReTeX/service-worker.js",
     "static/css/main.47e10bcd.chunk.css.map": "/ReTeX/static/css/main.47e10bcd.chunk.css.map",
     "static/js/2.e6824236.chunk.js.LICENSE.txt": "/ReTeX/static/js/2.e6824236.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.208c5269.js",
     "static/js/2.e6824236.chunk.js",
     "static/css/main.47e10bcd.chunk.css",
-    "static/js/main.96d5176b.chunk.js"
+    "static/js/main.b8b0f58a.chunk.js"
   ]
 }
