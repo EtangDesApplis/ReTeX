@@ -86,6 +86,8 @@ class MyForm extends Component {
           //body: JSON.stringify({ title: 'React POST Request Example' })
           body: JSON.stringify({ url: this.state.giturl, main: this.state.texfile })
         };
+
+        /*
         try{
         // THIS TRY AND CATCH IS USELESS
         //  if (conf.info===undefined){
@@ -126,6 +128,18 @@ class MyForm extends Component {
               this.setState({ response: data })
             });
         }
+        */
+        this.setState({backend: conf.backend});
+        console.log(conf.backend);
+        console.log(this.state.backend);
+        fetch(conf.backend,requestOptions)
+          .then(response => response.json())
+          //wait til the reponse from back end
+          .then(data => {
+            //print out reponse to debug
+            console.log(data)
+            this.setState({ response: data })
+          });
 
         event.preventDefault();
     }
