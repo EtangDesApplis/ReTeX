@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/ReTeX/static/css/main.47e10bcd.chunk.css",
-    "main.js": "/ReTeX/static/js/main.b8b0f58a.chunk.js",
-    "main.js.map": "/ReTeX/static/js/main.b8b0f58a.chunk.js.map",
+    "main.js": "/ReTeX/static/js/main.6a0ef286.chunk.js",
+    "main.js.map": "/ReTeX/static/js/main.6a0ef286.chunk.js.map",
     "runtime-main.js": "/ReTeX/static/js/runtime-main.208c5269.js",
     "runtime-main.js.map": "/ReTeX/static/js/runtime-main.208c5269.js.map",
-    "static/js/2.e6824236.chunk.js": "/ReTeX/static/js/2.e6824236.chunk.js",
-    "static/js/2.e6824236.chunk.js.map": "/ReTeX/static/js/2.e6824236.chunk.js.map",
+    "static/js/2.eb155c2a.chunk.js": "/ReTeX/static/js/2.eb155c2a.chunk.js",
+    "static/js/2.eb155c2a.chunk.js.map": "/ReTeX/static/js/2.eb155c2a.chunk.js.map",
     "index.html": "/ReTeX/index.html",
-    "precache-manifest.b6d759694cd76b1bd1c3a86df091eec1.js": "/ReTeX/precache-manifest.b6d759694cd76b1bd1c3a86df091eec1.js",
+    "precache-manifest.0f853ba891d8937154c78ce06bf4dc62.js": "/ReTeX/precache-manifest.0f853ba891d8937154c78ce06bf4dc62.js",
     "service-worker.js": "/ReTeX/service-worker.js",
     "static/css/main.47e10bcd.chunk.css.map": "/ReTeX/static/css/main.47e10bcd.chunk.css.map",
-    "static/js/2.e6824236.chunk.js.LICENSE.txt": "/ReTeX/static/js/2.e6824236.chunk.js.LICENSE.txt",
+    "static/js/2.eb155c2a.chunk.js.LICENSE.txt": "/ReTeX/static/js/2.eb155c2a.chunk.js.LICENSE.txt",
     "static/media/ko-fi.png": "/ReTeX/static/media/ko-fi.e1440a6f.png",
     "static/media/logo.svg": "/ReTeX/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.208c5269.js",
-    "static/js/2.e6824236.chunk.js",
+    "static/js/2.eb155c2a.chunk.js",
     "static/css/main.47e10bcd.chunk.css",
-    "static/js/main.b8b0f58a.chunk.js"
+    "static/js/main.6a0ef286.chunk.js"
   ]
 }
