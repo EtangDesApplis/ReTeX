@@ -16,5 +16,6 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY main.py /back/main.py
 EXPOSE 5000
 #ENV PUBLIC_FOLDER="/front/build"
-RUN echo "python3 -u /back/main.py" > start.sh
+RUN echo "python3 -u /back/janitord.py /tmp case 300 &" > start.sh && \
+    echo "python3 -u /back/main.py" >> start.sh
 CMD ["sh", "start.sh"]
