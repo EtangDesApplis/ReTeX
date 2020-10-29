@@ -14,6 +14,7 @@ RUN rm -rf /var/lib/apt/lists/*
 
 #back
 COPY main.py /back/main.py
+COPY janitord.py /back/janitord.py
 EXPOSE 5000
 #ENV PUBLIC_FOLDER="/front/build"
 RUN echo "python3 -u /back/janitord.py /tmp case 300 &" > start.sh && \
