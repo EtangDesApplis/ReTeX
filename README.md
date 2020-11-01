@@ -15,7 +15,7 @@ Front-end in React & Back-end in python:
 
 ## Easy way
 
-Just use the web service avaible at : [ my link ]
+Just use the web service avaible at : https://etangdesapplis.github.io/ReTeX/
 
 ## Hard way
 
