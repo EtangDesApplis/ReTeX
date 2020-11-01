@@ -11,6 +11,9 @@ Front-end in React & Back-end in python:
 
 ![Architecture](ReTeX-Architecture.png)
 
+# Network configuration
+![Network configuration](network_config.png)
+
 # How to use
 
 ## Easy way
