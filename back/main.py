@@ -6,6 +6,9 @@ import shutil
 from subprocess import Popen, PIPE
 from flask import send_from_directory
 
+#swagger
+from flask import jsonify
+
 app = Flask(__name__)
 CORS(app)
 PUBLIC_FOLDER=os.getenv('PUBLIC_FOLDER')
@@ -37,9 +40,43 @@ def get_file(filePath):
     #binary file will be send as attachement
     return send_from_directory(os.path.dirname(tmp), os.path.basename(tmp), as_attachment=True)
 
-@app.route('/', methods=['POST'])
-def post_route():
+@app.route('/health', methods=['GET'])
+def health_check():
+  """
+    ---
+    get:
+      description: API health check
+      responses:
+        '200':
+          description: call successful
+          content:
+            application/json:
+              schema: OutputSchema2
+      tags:
+          - Health check
+    """
+  return {"Status":"OK"}
 
+@app.route('/api', methods=['POST'])
+def build_project():
+    """
+    ---
+    post:
+      description: Build latex project
+      requestBody:
+        required: true
+        content:
+            application/json:
+                schema: InputSchema1
+      responses:
+        '200':
+          description: call successful
+          content:
+            application/json:
+              schema: OutputSchema1
+      tags:
+          - Compilation
+    """
     #print(request.method)
     try:
       data = request.get_json()
@@ -91,6 +128,20 @@ def post_route():
       return {"Status":"OK","OutputFile":outputfile.replace(PRIVATE_FOLDER,""),"LogFile":logfile.replace(PRIVATE_FOLDER,"")}
     except:
       return {"Status":"KO"}
+
+#swagger
+from api_spec import spec
+from swagger import swagger_ui_blueprint, SWAGGER_URL
+with app.test_request_context():
+  spec.path(view=app.view_functions["build_project"])
+  spec.path(view=app.view_functions["health_check"])
+@app.route("/api/swagger.json")
+def create_swagger_spec():
+    """
+    Swagger API definition.
+    """
+    return jsonify(spec.to_dict())
+app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
 
 if __name__=="__main__":
   #to test with curl: curl localhost:5000 -d "{\"foo\": \"ok\"}" -H 'Content-Type: application/json'

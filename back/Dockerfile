@@ -9,12 +9,16 @@ RUN ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime \
 RUN apt-get install git -y
 RUN apt install python3 -y
 RUN apt install python3-pip -y
-RUN pip3 install flask flask_cors
-RUN rm -rf /var/lib/apt/lists/*
 
-#back
+COPY requirements.txt /back/requirements.txt
 COPY main.py /back/main.py
 COPY janitord.py /back/janitord.py
+COPY api_spec.py /back/api_spec.py
+COPY swagger.py /back/swagger.py
+
+RUN pip3 install -r /back/requirements.txt
+RUN rm -rf /var/lib/apt/lists/*
+
 EXPOSE 5000
 #ENV PUBLIC_FOLDER="/front/build"
 RUN echo "python3 -u /back/janitord.py /tmp case 300 &" > start.sh && \

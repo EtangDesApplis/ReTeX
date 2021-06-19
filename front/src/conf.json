@@ -1,4 +1,4 @@
-{ "backend": "https://chefphan.com/retex/",
+{ "backend": "https://retex-api.chefphan.com/api",
   "info": "https://raw.githubusercontent.com/EtangDesApplis/network-info/master/retex.json",
   "target": "extIP",
   "port": "5000"
