@@ -1,0 +1,15 @@
+debug: true
+imagePullPolicy: Always
+arm: false
+front:
+  image: antoinenguyen31/retex-front
+  tag: latest
+  ingress:
+    enabled: true
+    host: retex.chefphan.com
+api:
+  image: antoinenguyen31/retex-api
+  tag: latest
+  ingress:
+    enabled: true
+    host: "retex-api.chefphan.com"

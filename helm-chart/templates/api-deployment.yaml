@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retex-api
+spec:
+  selector:
+    matchLabels:
+      app: retex-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: retex-api
+    spec:
+      containers:
+      - name: api
+        {{ if .Values.arm }}
+        image: "{{ .Values.api.image }}:{{ .Values.api.tag }}-arm"
+        {{ else }}
+        image: "{{ .Values.api.image }}:{{ .Values.api.tag }}"
+        {{ end }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
