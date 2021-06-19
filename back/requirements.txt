@@ -1,7 +1,8 @@
+PyYAML
 flask
 flask_cors
 flask_swagger_ui
 apispec
 apispec_webframeworks
 marshmallow
-PyYAML
+

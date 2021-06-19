@@ -16,7 +16,8 @@ COPY janitord.py /back/janitord.py
 COPY api_spec.py /back/api_spec.py
 COPY swagger.py /back/swagger.py
 
-RUN pip3 install -r /back/requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip install -r /back/requirements.txt
 RUN rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5000
