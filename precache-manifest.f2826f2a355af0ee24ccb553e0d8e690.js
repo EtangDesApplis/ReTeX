@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6adcec4d2eccfe894bb70daf4e8dbd80",
+    "revision": "79884a84c92b5b71ae11118c43c659c0",
     "url": "/ReTeX/index.html"
   },
   {
-    "revision": "26a0f92d4e0656e7b8a6",
+    "revision": "ab1f89be7033dc462aaa",
     "url": "/ReTeX/static/css/main.47e10bcd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ReTeX/static/js/2.eb155c2a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "26a0f92d4e0656e7b8a6",
-    "url": "/ReTeX/static/js/main.6a0ef286.chunk.js"
+    "revision": "ab1f89be7033dc462aaa",
+    "url": "/ReTeX/static/js/main.f6dd1a1b.chunk.js"
   },
   {
     "revision": "ea6eca3ecad388ea4a1e",

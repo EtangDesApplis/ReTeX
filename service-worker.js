@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ReTeX/precache-manifest.0f853ba891d8937154c78ce06bf4dc62.js"
+  "/ReTeX/precache-manifest.f2826f2a355af0ee24ccb553e0d8e690.js"
 );
 
 self.addEventListener('message', (event) => {
