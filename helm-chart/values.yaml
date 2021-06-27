@@ -3,7 +3,7 @@ imagePullPolicy: Always
 arm: false
 front:
   image: antoinenguyen31/retex-front
-  tag: latest
+  tag: 210627
   ingress:
     enabled: true
     host: retex.chefphan.com

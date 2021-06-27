@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: retex-front
+spec:
+  selector:
+    matchLabels:
+      app: retex-front
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: retex-front
+    spec:
+      containers:
+      - name: front
+        {{ if .Values.arm }}
+        image: "{{ .Values.front.image }}:{{ .Values.front.tag }}-arm"
+        {{ else }}
+        image: "{{ .Values.front.image }}:{{ .Values.front.tag }}"
+        {{ end }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
