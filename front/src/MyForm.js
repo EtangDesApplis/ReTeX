@@ -132,7 +132,7 @@ class MyForm extends Component {
         this.setState({backend: conf.backend});
         console.log(conf.backend);
         console.log(this.state.backend);
-        fetch(conf.backend,requestOptions)
+        fetch(conf.backend + "/api",requestOptions)
           .then(response => response.json())
           //wait til the reponse from back end
           .then(data => {
