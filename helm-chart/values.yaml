@@ -12,4 +12,4 @@ api:
   tag: latest
   ingress:
     enabled: true
-    host: "retex-api2.chefphan.com"
+    host: "retex-api.chefphan.com"
