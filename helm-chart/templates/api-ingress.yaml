@@ -5,8 +5,13 @@ metadata:
   name: retex-api
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - {{ .Values.api.ingress.host }}
+    secretName: tls-retex-api
   rules:
   - host: {{ .Values.api.ingress.host }}
     http:
